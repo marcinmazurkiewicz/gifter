@@ -1,0 +1,17 @@
+security:
+  oauth2:
+    resourceserver:
+      keycloak-url: http://localhost:8089
+      keycloak-realm: gifter
+      opaque-token:
+        client-id: gifterClient
+        client-secret: FBBs7nDok8weALzF9RRVH8C1T3tW3ZUj
+  cors:
+    allowed-origins: http://localhost:5173, http://localhost:4173
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/gifter
+    username: m2
+    password: 1qaZXsw2
+    driver-class-name: org.postgresql.Driver

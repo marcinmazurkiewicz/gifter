@@ -1,0 +1,36 @@
+services:
+  db:
+    image: postgres:latest
+    container_name: db
+    hostname: db
+    environment:
+      POSTGRES_DB: db
+      POSTGRES_PASSWORD: 1qaZXsw2
+      POSTGRES_USER: m2
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data/
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:23.0.6
+    container_name: keycloak
+    hostname: keycloak
+    command: start-dev
+    environment:
+      KC_HTTP_ENABLED: true
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://db/keycloak
+      KC_DB_USERNAME: m2
+      KC_DB_PASSWORD: 1qaZXsw2
+      KC_FEATURES: declarative-user-profile
+    ports:
+      - "8089:8080"
+    restart: always
+    depends_on:
+      - db
+
+volumes:
+  db_data:

@@ -1,0 +1,21 @@
+server:
+  port: 8980
+
+spring:
+  application:
+    name: gifter
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+
+security:
+  oauth2:
+    resourceserver:
+      keycloak-logout-url: ${security.oauth2.resourceserver.keycloak-url}/realms/gifter/protocol/openid-connect/logout
+      opaque-token:
+        introspection-uri: ${security.oauth2.resourceserver.keycloak-url}/realms/gifter/protocol/openid-connect/token/introspect
